@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44664794, g: 0.4964952, b: 0.57485944, a: 1}
+  m_IndirectSpecularColor: {r: 0.44664818, g: 0.49649543, b: 0.57486, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -966,13 +966,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  groundDrag: 5
+  groundDrag: 3
   jumpForce: 12
   airMultiplier: 0.6
   jumpCoolDown: 0.25
   jumpKey: 32
   playerHeight: 2
-  whatIsGround:
+  ground:
     serializedVersion: 2
     m_Bits: 1024
   maxSlopeAngle: 40

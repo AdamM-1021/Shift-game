@@ -115,9 +115,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (OnSlope() && !exitingSlope)
         {
-            if (rb.velocity.magnitude > moveSpeed)
+            if (rb.velocity.magnitude > moveSpeed * 1.5f)
             {
-                rb.velocity = rb.velocity.normalized * moveSpeed;
+                rb.velocity = rb.velocity.normalized * moveSpeed * 1.5f;
             }
         }
 
@@ -125,9 +125,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-            if (flatVel.magnitude > moveSpeed)
+            if (flatVel.magnitude > moveSpeed * 1.5f)
             {
-                Vector3 limitedVel = flatVel.normalized * moveSpeed;
+                Vector3 limitedVel = flatVel.normalized * moveSpeed * 1.5f;
                 rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
             }
         }
