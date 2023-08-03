@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44664794, g: 0.4964952, b: 0.57485944, a: 1}
+  m_IndirectSpecularColor: {r: 0.44664818, g: 0.49649543, b: 0.57486, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -901,6 +901,7 @@ GameObject:
   - component: {fileID: 2099214495}
   - component: {fileID: 2099214496}
   - component: {fileID: 2099214497}
+  - component: {fileID: 2099214498}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -965,15 +966,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea7ae2dd63560c4690d6aaee5393765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  groundDrag: 5
+  walkSpeed: 10
+  wallRunSpeed: 13
+  groundDrag: 3
   jumpForce: 12
   airMultiplier: 0.6
   jumpCoolDown: 0.25
   jumpKey: 32
   playerHeight: 2
-  whatIsGround:
+  ground:
     serializedVersion: 2
     m_Bits: 1024
   maxSlopeAngle: 40
+  orientation: {fileID: 646623913}
+  state: 0
+  wallrunning: 0
+--- !u!114 &2099214498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099214494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf473af93c1f4fe4e9d498ed3f9978f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wall:
+    serializedVersion: 2
+    m_Bits: 2048
+  ground:
+    serializedVersion: 2
+    m_Bits: 1024
+  wallRunForce: 225
+  maxWallRunTime: 1.5
+  wallCheckDistance: 0.7
+  minJumpHeight: 1.5
   orientation: {fileID: 646623913}

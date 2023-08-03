@@ -6,7 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
 
     [Header("Movement")]
-    public float moveSpeed;
+    private float moveSpeed;
+    public float walkSpeed;
+    public float wallRunSpeed;
 
     public float groundDrag;
 
@@ -36,6 +38,14 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
+
+    public MovementState state;
+    public enum MovementState
+    {
+        walking, air, wallrun
+    }
+
+    public bool wallrunning;
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +93,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void StateHandler()
+    {
+        if (wallrunning)
+        {
+            state = MovementState.wallrun;
+            moveSpeed = wallRunSpeed;
+        }
+        else if (grounded)
+        {
+            state= MovementState.walking;
+            moveSpeed = walkSpeed;
+        }
+
+        else
+        {
+            state = MovementState.air;
+        }
+    }
+
     void MovePlayer()
     {
         // calc direction
@@ -115,9 +144,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (OnSlope() && !exitingSlope)
         {
-            if (rb.velocity.magnitude > moveSpeed)
+            if (rb.velocity.magnitude > moveSpeed * 1.5f)
             {
-                rb.velocity = rb.velocity.normalized * moveSpeed;
+                rb.velocity = rb.velocity.normalized * moveSpeed * 1.5f;
             }
         }
 
@@ -125,9 +154,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-            if (flatVel.magnitude > moveSpeed)
+            if (flatVel.magnitude > moveSpeed * 1.5f)
             {
-                Vector3 limitedVel = flatVel.normalized * moveSpeed;
+                Vector3 limitedVel = flatVel.normalized * moveSpeed * 1.5f;
                 rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
             }
         }
