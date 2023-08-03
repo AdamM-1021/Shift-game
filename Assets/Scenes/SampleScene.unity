@@ -966,8 +966,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea7ae2dd63560c4690d6aaee5393765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   walkSpeed: 10
   wallRunSpeed: 13
+=======
+  moveSpeed: 10
+>>>>>>> d1e11f698b3b8766fbdf4ec95c221b1c8caec888
   groundDrag: 3
   jumpForce: 12
   airMultiplier: 0.6
