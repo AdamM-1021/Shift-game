@@ -85,6 +85,7 @@ public class WallRun : MonoBehaviour
     private void WallRunMovement()
     {
         rb.useGravity = false;
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.y);
 
 
         Vector3 wallNormal = rightWall ? rightWallhit.normal : leftWallhit.normal;

@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         //Vibe Check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
 
+        StateHandler();
         MyInput();
         SpeedControl();
 
