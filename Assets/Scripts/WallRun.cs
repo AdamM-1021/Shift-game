@@ -8,10 +8,13 @@ public class WallRun : MonoBehaviour
     public LayerMask wall;
     public LayerMask ground;
     public float wallRunForce;
+    public float wallJumpForceUp;
+    public float wallJumpForceSide;
     public float maxWallRunTime;
     private float wallRunTimer;
 
     [Header("Input")]
+    public KeyCode JumpKey = KeyCode.Space;
     private float horizontalInput;
     private float verticalInput;
 
@@ -74,6 +77,8 @@ public class WallRun : MonoBehaviour
             {
                 StartWallRun();
             }
+
+            if (Input.GetKeyDown(JumpKey)) WallJump();
         }
 
         else
@@ -109,5 +114,16 @@ public class WallRun : MonoBehaviour
     private void StopWallRun()
     {
         pm.wallrunning = false;
+    }
+
+    private void WallJump()
+    {
+        Vector3 wallNormal = rightWall ? rightWallhit.normal : leftWallhit.normal;
+
+        Vector3 forceToApply = transform.up * wallJumpForceUp + wallNormal * wallJumpForceSide;
+
+        //Push
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.AddForce(forceToApply, ForceMode.Impulse);
     }
 }
