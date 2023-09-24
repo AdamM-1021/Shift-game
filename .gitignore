@@ -73,3 +73,5 @@ crashlytics-build.properties
 
 # Textmesh Pro Assets
 /[Aa]ssets/TextMesh Pro/*
+
+/[Aa]ssets/Free Stylized Skybox/*

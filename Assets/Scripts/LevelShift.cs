@@ -5,13 +5,14 @@ using UnityEngine;
 public class LevelShift : MonoBehaviour
 {
     [Header("Refs")]
-    public Transform leftLevel;
-    public Transform rightLevel;
+    public GameObject leftLevel;
+    public GameObject rightLevel;
 
-
+    public static bool leftActive = true;
     void Start()
     {
-        
+        leftLevel.SetActive(true);
+        rightLevel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -25,8 +26,16 @@ public class LevelShift : MonoBehaviour
 
     private void ShiftLevel()
     {
-        Vector3 temp = leftLevel.position;
-        leftLevel.position = rightLevel.position;
-        rightLevel.position = temp;
+        if (leftActive)
+        {
+            leftLevel.SetActive(false);
+            rightLevel.SetActive(true);
+            leftActive = false;
+        } else
+        {
+            rightLevel.SetActive(false);
+            leftLevel.SetActive(true);
+            leftActive = true;
+        }
     }
 }
