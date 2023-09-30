@@ -68,7 +68,7 @@ Transform:
   - {fileID: 3026280560219549617}
   - {fileID: 9016033558214565810}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1761141743080518783
 Rigidbody:
@@ -111,7 +111,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 11
   wallRunSpeed: 15
-  slideSpeed: 0
+  slideSpeed: 30
+  speedIncreaseMultiplier: 1.5
+  slopeIncreaseMultiplier: 2.5
   groundDrag: 3
   jumpForce: 12
   airMultiplier: 0.6

@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     private float targetSpeed;
     private float lastTargetSpeed;
 
+    public float speedIncreaseMultiplier;
+    public float slopeIncreaseMultiplier;
+
     public float groundDrag;
 
     public float jumpForce;
@@ -145,8 +148,18 @@ public class PlayerMovement : MonoBehaviour
 
         while(time < difference)
         {
-            moveSpeed = Mathf.Lerp(startValue, targetSpeed, time/difference);
-            time += Time.deltaTime;
+            moveSpeed = Mathf.Lerp(startValue, targetSpeed, time / difference);
+
+            if (OnSlope())
+            {
+                float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
+                float slopeAngleIncrease = 1 + (slopeAngle / 90f);
+
+                time += Time.deltaTime * speedIncreaseMultiplier * slopeIncreaseMultiplier * slopeAngleIncrease;
+            }
+            else
+                time += Time.deltaTime * speedIncreaseMultiplier;
+
             yield return null;
         }
 
@@ -166,9 +179,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.AddForce(Vector3.down * 80f, ForceMode.Force);
             }
+
         }
 
-        if (grounded)
+        else if (grounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         }
@@ -186,9 +200,7 @@ public class PlayerMovement : MonoBehaviour
         if (OnSlope() && !exitingSlope)
         {
             if (rb.velocity.magnitude > moveSpeed * 1.5f)
-            {
                 rb.velocity = rb.velocity.normalized * moveSpeed * 1.5f;
-            }
         }
 
         else
